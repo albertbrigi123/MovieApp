@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.movieapp.LoginActivity;
+import com.example.movieapp.MainActivity;
 import com.example.movieapp.R;
 
 import gr.net.maroulis.library.EasySplashScreen;
@@ -19,7 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         EasySplashScreen config = new EasySplashScreen(SplashScreenActivity.this)
                 .withFullScreen()
-                .withTargetActivity(LoginActivity.class)
+                .withTargetActivity(MainActivity.class)
                 .withSplashTimeOut(3000)
                 .withBackgroundColor(Color.parseColor("#E6000000"))
                 .withLogo(R.drawable.logo);
