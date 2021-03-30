@@ -6,7 +6,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.movieapp.MainActivity;
 import com.example.movieapp.R;
 
 import gr.net.maroulis.library.EasySplashScreen;
