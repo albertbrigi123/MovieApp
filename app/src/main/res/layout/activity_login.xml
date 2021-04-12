@@ -56,23 +56,13 @@ tools:context=".Activities.LoginActivity">
         android:inputType="textPassword"
         android:textSize="16sp" />
 
-    <CheckBox
-        android:id="@+id/RememberMeCB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/PasswordText"
-        android:textColor="@color/white"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:text="Remember Me"/>
-
     <Button
         android:id="@+id/LoginButton"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/RememberMeCB"
+        android:layout_below="@id/PasswordText"
         android:layout_marginTop="50dp"
         android:text="LOG IN"
         android:textColor="@color/white"

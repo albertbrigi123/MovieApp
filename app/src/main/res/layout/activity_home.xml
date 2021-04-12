@@ -6,4 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".Activities.HomeActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_navigation"/>
+
+        <EditText
+            android:id="@+id/SearchMovieText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:hint="@string/SearchMovieText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/SearchButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_toEndOf="@id/SearchMovieText"
+            android:text="@string/Search"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listmovies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SearchButton"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="55dp" />
+
+    </RelativeLayout>/
+
 </androidx.constraintlayout.widget.ConstraintLayout>

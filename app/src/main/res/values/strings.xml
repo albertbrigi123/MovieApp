@@ -11,5 +11,6 @@
     <string name="LastName">Last Name</string>
     <string name="ConfirmPassword">Confirm Password</string>
 
-    <string name="RememberMe">Remember Me</string>
+    <string name="SearchMovieText">Enter the movie title</string>
+    <string name="Search">Search</string>
 </resources>
