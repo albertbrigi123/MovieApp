@@ -1,15 +1,18 @@
 package com.example.movieapp.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +26,7 @@ import com.example.movieapp.API.Result;
 import com.example.movieapp.Adapters.MovieListAdapter;
 import com.example.movieapp.PaginationScrollListener;
 import com.example.movieapp.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,6 +146,26 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                        break;
+                    case R.id.nav_profile :
+                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        break;
+                    case R.id.nav_watchList:
+                        startActivity(new Intent(getApplicationContext(),WatchListActivity.class));
+                        break;
+                }
+                return true;
             }
         });
     }
