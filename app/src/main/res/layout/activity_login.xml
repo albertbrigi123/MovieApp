@@ -62,8 +62,8 @@ tools:context=".Activities.LoginActivity">
         android:layout_marginRight="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/PasswordText"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/rememberMeCheckBox"
+        android:layout_marginTop="20dp"
         android:text="LOG IN"
         android:textColor="@color/white"
         android:textSize="20sp"/>
@@ -75,9 +75,22 @@ tools:context=".Activities.LoginActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/LoginButton"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/white"
         android:text="SIGN UP"
         android:textSize="20sp"/>
+
+    <CheckBox
+        android:id="@+id/rememberMeCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/PasswordText"
+        android:textColor="@color/white"
+        android:text="Remember me"
+        android:textSize="15dp"
+        />
 
 </RelativeLayout>
