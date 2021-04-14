@@ -116,7 +116,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(RegistrationActivity.this,"Error! The inputs cannot be empty.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this,"Error! The inputs can not be empty.", Toast.LENGTH_SHORT).show();
                 }
 
             }

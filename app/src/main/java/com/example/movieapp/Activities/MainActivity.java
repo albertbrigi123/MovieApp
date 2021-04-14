@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
 }

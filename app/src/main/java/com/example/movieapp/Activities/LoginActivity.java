@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,18 +41,24 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailET.getText().toString().trim();
                 String password = passwordET.getText().toString().trim();
 
-                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                if(CheckInputs()){
+                    fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
 
-                        }else {
-                            Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
                         }
-
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this,"Error! The inputs can not be empty.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -61,5 +68,23 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
             }
         });
+    }
+
+    boolean isEmpty(EditText text){
+        CharSequence str = text.getText().toString();
+        return TextUtils.isEmpty(str);
+    }
+
+    public boolean CheckInputs(){
+        boolean inputValidation = true;
+        if(isEmpty(emailET)){
+            emailET.setError("Email is required!");
+            inputValidation = false;
+        }
+        if(isEmpty(passwordET)){
+            passwordET.setError("Password is required");
+            inputValidation = false;
+        }
+        return inputValidation;
     }
 }
