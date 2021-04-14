@@ -51,7 +51,7 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         titleTW = findViewById(R.id.TitleAndReleaseDate);
         descriptionTW = findViewById(R.id.Description);

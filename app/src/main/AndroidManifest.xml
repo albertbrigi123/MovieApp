@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp">
-        <activity android:name=".Activities.DetailsActivity"></activity>
+        <activity android:name=".Activities.DetailsActivity"
+            android:parentActivityName=".Activities.HomeActivity"/>
         <activity android:name=".Activities.WatchListActivity" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.RegistrationActivity" />
