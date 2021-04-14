@@ -9,14 +9,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            tools:layout_editor_absoluteX="0dp">
+            android:layout_marginRight="15dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -26,7 +27,7 @@
                     android:id="@+id/Thumbnail"
                     android:layout_width="180dp"
                     android:layout_height="250dp"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/TitleAndReleaseDate"
