@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -58,54 +59,98 @@ public class RegistrationActivity extends AppCompatActivity {
                 String lastName = lastNameET.getText().toString();
                 String confirmPassword = confirmPasswordET.getText().toString().trim();
 
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser fuser = fAuth.getCurrentUser();
-                            fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(RegistrationActivity.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("TAG", "onFailure: Email not sent " + e.getMessage());
-                                }
-                            });
-
-                            Toast.makeText(RegistrationActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            userID = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fStore.collection("users").document(userID);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("firstName",firstName);
-                            user.put("lastName",lastName);
-                            user.put("email",email);
-                            documentReference.collection("users")
-                                    .add(user)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                if(CheckInputs()){
+                    if(password.equals(confirmPassword)){
+                        fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser fuser = fAuth.getCurrentUser();
+                                    fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onSuccess(DocumentReference documentReference) {
-                                            Log.d("TAG", "onSuccess: user Profile is created for " + userID);
-
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(RegistrationActivity.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
                                         }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
+                                    }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.d("TAG", "onFailure: " + e.toString());
+                                            Log.d("TAG", "onFailure: Email not sent " + e.getMessage());
                                         }
                                     });
 
-                            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                        } else {
-                            Toast.makeText(RegistrationActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                                    Toast.makeText(RegistrationActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
+                                    userID = fAuth.getCurrentUser().getUid();
+                                    DocumentReference documentReference = fStore.collection("users").document(userID);
+                                    Map<String, Object> user = new HashMap<>();
+                                    user.put("firstName",firstName);
+                                    user.put("lastName",lastName);
+                                    user.put("email",email);
+                                    documentReference.collection("users")
+                                            .add(user)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.d("TAG", "onSuccess: user Profile is created for " + userID);
+
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.d("TAG", "onFailure: " + e.toString());
+                                                }
+                                            });
+
+                                    startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                                } else {
+                                    Toast.makeText(RegistrationActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
-                });
+                    else
+                    {
+                        Toast.makeText(RegistrationActivity.this,"Error! Password and confirmation password is not matching.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else
+                {
+                    Toast.makeText(RegistrationActivity.this,"Error! The inputs cannot be empty.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
+    }
+
+    boolean isEmpty(EditText text){
+        CharSequence str = text.getText().toString();
+        return TextUtils.isEmpty(str);
+    }
+
+    public boolean CheckInputs(){
+        boolean inputValidation = true;
+        if(isEmpty(emailET)){
+            emailET.setError("Email is required!");
+            inputValidation = false;
+        }
+        if(isEmpty(passwordET)){
+            passwordET.setError("Password is required!");
+            inputValidation = false;
+        }
+        if(isEmpty(firstNameET)){
+            firstNameET.setError("First name is required!");
+            inputValidation = false;
+        }
+        if(isEmpty(lastNameET)){
+            lastNameET.setError("Last name is required!");
+            inputValidation = false;
+        }
+        if(isEmpty(confirmPasswordET)){
+            confirmPasswordET.setError("Confirm password is required!");
+            inputValidation = false;
+        }
+        return inputValidation;
     }
 }
