@@ -11,33 +11,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.movieapp.API.Result;
 import com.example.movieapp.Activities.DetailsActivity;
 import com.example.movieapp.R;
 
 import java.util.List;
 
-public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
+public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder>  {
     List<Result> movielist;
     Context context;
 
-    public MovieListAdapter(List<Result> s, Context context) {
+    public DetailsAdapter(List<Result> s, Context context) {
         this.movielist = s;
         this.context=context;
     }
 
     @NonNull
     @Override
-    public MovieListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_details, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(movielist.get(position).getOriginalTitle());
-        Glide.with(context).load(movielist.get(position).getPosterPath()).into(holder.image);
+        holder.shortdescription.setText(movielist.get(position).getOverview());
     }
 
     @Override
@@ -47,32 +46,17 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
+        TextView shortdescription;
         ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.TitleAndReleaseDate);
+            shortdescription = itemView.findViewById(R.id.Description);
             image = itemView.findViewById(R.id.Thumbnail);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if(pos != RecyclerView.NO_POSITION){
-                        Result clickedDataItem = movielist.get(pos);
-                        Intent intent = new Intent(context, DetailsActivity.class);
-                        intent.putExtra("id",movielist.get(pos).getId());
-                        intent.putExtra("originaltitle", movielist.get(pos).getOriginalTitle());
-                        intent.putExtra("shortdescription", movielist.get(pos).getOverview());
-                        intent.putExtra("image",movielist.get(pos).getPosterPath());
-                        intent.putExtra("releasedate", movielist.get(pos).getReleaseDate());
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-                }
-            });
         }
     }
+
     public void add(Result movie){
         movielist.add(movie);
         notifyItemInserted(movielist.size()-1);
@@ -83,7 +67,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
             add(m);
         }
     }
-
+    //add empty item
     public void addBottemIttem(){
         add(new Result());
     }
@@ -100,5 +84,4 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     private Result getItem(int position){
         return movielist.get(position);
     }
-
 }

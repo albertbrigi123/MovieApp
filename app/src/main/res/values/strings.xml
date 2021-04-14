@@ -13,4 +13,9 @@
 
     <string name="SearchMovieText">Enter the movie title</string>
     <string name="Search">Search</string>
+
+    <string name="Overview">Overview</string>
+    <string name="Trailer">Trailer</string>
+    <string name="ReleatedMovies">Releated movies</string>
+    <string name="Images">Images</string>
 </resources>
