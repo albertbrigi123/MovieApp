@@ -59,8 +59,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 String lastName = lastNameET.getText().toString();
                 String confirmPassword = confirmPasswordET.getText().toString().trim();
 
-                if(CheckInputs()){
-                    if(password.equals(confirmPassword)){
+                if (CheckInputs()) {
+                    if (password.equals(confirmPassword)) {
                         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -82,41 +82,33 @@ public class RegistrationActivity extends AppCompatActivity {
                                     userID = fAuth.getCurrentUser().getUid();
                                     DocumentReference documentReference = fStore.collection("users").document(userID);
                                     Map<String, Object> user = new HashMap<>();
-                                    user.put("firstName",firstName);
-                                    user.put("lastName",lastName);
-                                    user.put("email",email);
-                                    documentReference.collection("users")
-                                            .add(user)
-                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                @Override
-                                                public void onSuccess(DocumentReference documentReference) {
-                                                    Log.d("TAG", "onSuccess: user Profile is created for " + userID);
+                                    user.put("firstName", firstName);
+                                    user.put("lastName", lastName);
+                                    user.put("email", email);
+                                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d("TAG", "onSuccess: user Profile is created for " + userID);
 
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.d("TAG", "onFailure: " + e.toString());
-                                                }
-                                            });
-
-                                    startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d("TAG", "onFailure: " + e.toString());
+                                        }
+                                    });
+                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                 } else {
                                     Toast.makeText(RegistrationActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-                    }
-                    else
-                    {
-                        Toast.makeText(RegistrationActivity.this,"Error! Password and confirmation password is not matching.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(RegistrationActivity.this, "Error! Password and confirmation password is not matching.", Toast.LENGTH_SHORT).show();
                     }
 
-                }
-                else
-                {
-                    Toast.makeText(RegistrationActivity.this,"Error! The inputs can not be empty.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RegistrationActivity.this, "Error! The inputs can not be empty.", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -124,31 +116,35 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    boolean isEmpty(EditText text){
+    boolean isEmpty(EditText text) {
         CharSequence str = text.getText().toString();
         return TextUtils.isEmpty(str);
     }
 
-    public boolean CheckInputs(){
+    public boolean CheckInputs() {
         boolean inputValidation = true;
-        if(isEmpty(emailET)){
+        if (isEmpty(emailET)) {
             emailET.setError("Email is required!");
             inputValidation = false;
         }
-        if(isEmpty(passwordET)){
+        if (isEmpty(passwordET)) {
             passwordET.setError("Password is required!");
             inputValidation = false;
         }
-        if(isEmpty(firstNameET)){
+        if (isEmpty(firstNameET)) {
             firstNameET.setError("First name is required!");
             inputValidation = false;
         }
-        if(isEmpty(lastNameET)){
+        if (isEmpty(lastNameET)) {
             lastNameET.setError("Last name is required!");
             inputValidation = false;
         }
-        if(isEmpty(confirmPasswordET)){
+        if (isEmpty(confirmPasswordET)) {
             confirmPasswordET.setError("Confirm password is required!");
+            inputValidation = false;
+        }
+        if (passwordET.equals(confirmPasswordET)) {
+            confirmPasswordET.setError("Password and Confirm password does not match!");
             inputValidation = false;
         }
         return inputValidation;
