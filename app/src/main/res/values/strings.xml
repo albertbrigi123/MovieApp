@@ -18,4 +18,6 @@
     <string name="Trailer">Trailer</string>
     <string name="ReleatedMovies">Releated movies</string>
     <string name="Images">Images</string>
+
+    <string name="LogOut">Log out</string>
 </resources>

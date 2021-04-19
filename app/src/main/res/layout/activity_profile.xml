@@ -44,6 +44,18 @@
             android:layout_below="@+id/Name"
             android:textColor="@color/white"/>
 
+        <Button
+            android:id="@+id/LogOutButton"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Email"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:text="@string/LogOut"
+            android:textSize="20sp"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"

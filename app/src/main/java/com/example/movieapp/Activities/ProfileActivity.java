@@ -10,26 +10,20 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -40,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
     String userId;
+    Button logOutBtn;
 
     private static final int RESULT_LOAD_IMAGE=1;
     private DocumentReference documentReference;
@@ -56,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         userId = fAuth.getInstance().getUid();
+        logOutBtn = findViewById(R.id.LogOutButton);
 
         FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
@@ -104,7 +100,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setSelectedItemId(R.id.nav_profile);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
