@@ -20,4 +20,9 @@
     <string name="Images">Images</string>
 
     <string name="LogOut">Log out</string>
+    <string name="ChangePassword">Change password</string>
+
+    <string name="CurrentPassword">Current password</string>
+    <string name="NewPassword">New password</string>
+    <string name="ConfirmNewPassword">Confirm new password</string>
 </resources>

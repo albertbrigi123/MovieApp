@@ -1,26 +1,35 @@
 package com.example.movieapp.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
     String userId;
-    Button logOutBtn;
+    Button logOutBtn, changePasswordBtn;
 
     private static final int RESULT_LOAD_IMAGE=1;
     private DocumentReference documentReference;
@@ -52,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         userId = fAuth.getInstance().getUid();
         logOutBtn = findViewById(R.id.LogOutButton);
+        changePasswordBtn = findViewById(R.id.ChangePasswordButton);
 
         FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
@@ -99,6 +109,53 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(gallery,RESULT_LOAD_IMAGE);
             }
         });
+
+       changePasswordBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               final View viewDialog = LayoutInflater.from(ProfileActivity.this).inflate(R.layout.new_password, null);
+               final AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+               builder.setView(viewDialog);
+               builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       EditText currentPasswordET, newPasswordET, confirmNewPasswordET;
+                       currentPasswordET = viewDialog.findViewById(R.id.CurrentPassword);
+                       newPasswordET = viewDialog.findViewById(R.id.NewPassword);
+                       confirmNewPasswordET = viewDialog.findViewById(R.id.ConfirmNewPassword);
+                       String currentPassword, newPassword, confirmNewPassword;
+                       currentPassword = currentPasswordET.getText().toString();
+                       confirmNewPassword = confirmNewPasswordET.getText().toString();
+                       newPassword = newPasswordET.getText().toString();
+
+                       if(newPassword.equals(confirmNewPassword))
+                       {
+                           FirebaseUser user = fAuth.getCurrentUser();
+                           AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), currentPassword);
+
+                           user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                               @Override
+                               public void onComplete(@NonNull Task<Void> task) {
+                                   if(task.isSuccessful()){
+                                       user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                           @Override
+                                           public void onComplete(@NonNull Task<Void> task) {
+                                               if (task.isSuccessful()) {
+                                                   Log.d("TAG", "Password updated");
+                                               } else {
+                                                   Log.d("TAG", "Error password not updated");
+                                               }
+                                           }
+                                       });
+                                   }
+                               }
+                           });
+                       }
+                   }
+               });
+               builder.create().show();
+           }
+       });
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
