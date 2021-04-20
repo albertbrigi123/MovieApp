@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.movieapp.R;
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn, registerBtn;
     FirebaseAuth fAuth;
     CheckBox rememberMeCHB;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.SignUpButton);
         rememberMeCHB = findViewById(R.id.rememberMeCheckBox);
         fAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -55,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emailET.getText().toString().trim();
                 String password = passwordET.getText().toString().trim();
+                progressBar.setVisibility(View.VISIBLE);
 
                 if(CheckInputs()){
                     fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
