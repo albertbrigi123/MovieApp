@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     String userId;
     Button logOutBtn, changePasswordBtn;
+    ProgressBar loadProgressBar;
 
     private static final int RESULT_LOAD_IMAGE=1;
     private DocumentReference documentReference;
@@ -62,6 +64,8 @@ public class ProfileActivity extends AppCompatActivity {
         userId = fAuth.getInstance().getUid();
         logOutBtn = findViewById(R.id.LogOutButton);
         changePasswordBtn = findViewById(R.id.ChangePasswordButton);
+        loadProgressBar = findViewById(R.id.progressBar);
+        loadProgressBar.setVisibility(View.VISIBLE);
 
         FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
@@ -70,6 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onSuccess(Uri uri) {
                 Log.e("Tuts+", "uri: " + uri.toString());
                 Glide.with(getApplicationContext()).load(uri).into(profileImage);
+                loadProgressBar.setVisibility(View.GONE);
             }
         });
 
@@ -199,6 +204,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebase(Uri contentUri) {
+        loadProgressBar.setVisibility(View.VISIBLE);
         FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
         userId = FirebaseAuth.getInstance().getUid();
@@ -212,7 +218,7 @@ public class ProfileActivity extends AppCompatActivity {
                         Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
                     }
                 });
-
+                loadProgressBar.setVisibility(View.GONE);
                 Toast.makeText(ProfileActivity.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
