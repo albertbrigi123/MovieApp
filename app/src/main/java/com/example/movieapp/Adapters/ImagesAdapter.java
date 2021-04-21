@@ -16,8 +16,8 @@ import com.example.movieapp.R;
 import java.util.List;
 
 public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.MyViewHolder> {
-    private Context context;
-    private List<Poster> imageslist;
+    private final Context context;
+    private final List<Poster> imageslist;
 
     public ImagesAdapter(Context context, List<Poster> imageslist) {
         this.context = context;
@@ -33,7 +33,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(context).load(imageslist.get(position).getFilePath()).into(holder.image);;
+        Glide.with(context).load(imageslist.get(position).getFilePath()).into(holder.image);
     }
 
     @Override

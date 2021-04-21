@@ -48,11 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = preferences.edit();
-        if(preferences.contains("checked") && preferences.getBoolean("checked", false)) {
-            rememberMeCHB.setChecked(true);
-        }else {
-            rememberMeCHB.setChecked(false);
-        }
+        rememberMeCHB.setChecked(preferences.contains("checked") && preferences.getBoolean("checked", false));
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

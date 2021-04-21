@@ -20,8 +20,8 @@ import java.util.List;
 
 public class RelatedMoviesAdapter extends RecyclerView.Adapter<RelatedMoviesAdapter.MyViewHolder>
 {
-    private Context context;
-    private List<RelatedMoviesResult> relatedlist;
+    private final Context context;
+    private final List<RelatedMoviesResult> relatedlist;
 
     public RelatedMoviesAdapter(Context context, List<RelatedMoviesResult> relatedlist) {
         this.context = context;

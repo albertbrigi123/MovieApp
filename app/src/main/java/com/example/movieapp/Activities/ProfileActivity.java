@@ -61,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profile_image);
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
-        userId = fAuth.getInstance().getUid();
+        userId = FirebaseAuth.getInstance().getUid();
         logOutBtn = findViewById(R.id.LogOutButton);
         changePasswordBtn = findViewById(R.id.ChangePasswordButton);
         loadProgressBar = findViewById(R.id.progressBar);

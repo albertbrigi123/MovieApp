@@ -45,13 +45,13 @@ public class HomeActivity extends AppCompatActivity {
     Button searchButton;
 
     private static final int START_PAGE = 1;
-    private int TOTAL_PAGE = 20;
+    private final int TOTAL_PAGE = 20;
     private boolean isLoading = false;
     private boolean isLastPage = false;
     private int CURRENT_PAGE = START_PAGE;
 
     Client client = new Client();
-    GetMovie getMovie = client.getClient().create(GetMovie.class);
+    GetMovie getMovie = Client.getClient().create(GetMovie.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

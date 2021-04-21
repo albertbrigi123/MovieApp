@@ -99,7 +99,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return;
             }
             Client client = new Client();
-            GetMovie apiservice = client.getClient().create(GetMovie.class);
+            GetMovie apiservice = Client.getClient().create(GetMovie.class);
             Call<RelatedMovies> call = apiservice.getRelatedMovies(movie_id,Constans.API_KEY);
             call.enqueue(new Callback<RelatedMovies>() {
                 @Override
@@ -129,7 +129,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return;
             }
             Client client = new Client();
-            GetMovie apiservice = client.getClient().create(GetMovie.class);
+            GetMovie apiservice = Client.getClient().create(GetMovie.class);
             Call<MovieVideo> call = apiservice.getTrailer(movie_id,Constans.API_KEY);
             call.enqueue(new Callback<MovieVideo>() {
                 @Override
@@ -178,7 +178,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return;
             }
             Client client = new Client();
-            GetMovie apiservice = client.getClient().create(GetMovie.class);
+            GetMovie apiservice = Client.getClient().create(GetMovie.class);
             Call<MovieImages> call = apiservice.getMovieImages(movie_id,Constans.API_KEY);
             call.enqueue(new Callback<MovieImages>() {
                 @Override

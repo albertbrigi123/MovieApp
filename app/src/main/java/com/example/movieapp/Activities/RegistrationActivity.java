@@ -40,7 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         getSupportActionBar().hide();
 
-        firstNameET = findViewById(R.id.FirstNameText);
+        firstNameET = findViewById(R.id.FirstNameEditText);
         lastNameET = findViewById(R.id.LastNameText);
         emailET = findViewById(R.id.EmailText);
         passwordET = findViewById(R.id.PasswordText);
@@ -65,8 +65,8 @@ public class RegistrationActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    FirebaseUser fuser = fAuth.getCurrentUser();
-                                    fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    FirebaseUser fUser = fAuth.getCurrentUser();
+                                    fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(RegistrationActivity.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
@@ -79,6 +79,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                     });
 
                                     Toast.makeText(RegistrationActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
+
                                     userID = fAuth.getCurrentUser().getUid();
                                     DocumentReference documentReference = fStore.collection("users").document(userID);
                                     Map<String, Object> user = new HashMap<>();
@@ -110,7 +111,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegistrationActivity.this, "Error! The inputs can not be empty.", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
