@@ -37,6 +37,8 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(movielist.get(position).getOriginalTitle());
         holder.shortdescription.setText(movielist.get(position).getOverview());
+        String rate = Double.toString(movielist.get(position).getVoteAverage());
+        holder.rating.setText(rate);
     }
 
     @Override
@@ -45,8 +47,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView shortdescription;
+        TextView title, shortdescription, rating;
         ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
@@ -54,6 +55,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             title = itemView.findViewById(R.id.TitleAndReleaseDate);
             shortdescription = itemView.findViewById(R.id.Description);
             image = itemView.findViewById(R.id.Thumbnail);
+            rating = itemView.findViewById(R.id.MovieRating);
         }
     }
 

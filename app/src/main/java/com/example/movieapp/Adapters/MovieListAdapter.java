@@ -17,6 +17,7 @@ import com.example.movieapp.Activities.DetailsActivity;
 import com.example.movieapp.R;
 
 import java.util.List;
+import java.util.concurrent.atomic.DoubleAccumulator;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
     List<Result> movielist;
@@ -66,6 +67,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
                         intent.putExtra("shortdescription", movielist.get(pos).getOverview());
                         intent.putExtra("image",movielist.get(pos).getPosterPath());
                         intent.putExtra("releasedate", movielist.get(pos).getReleaseDate());
+                        intent.putExtra("vote_average", Double.toString(movielist.get(pos).getVoteAverage()));
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }

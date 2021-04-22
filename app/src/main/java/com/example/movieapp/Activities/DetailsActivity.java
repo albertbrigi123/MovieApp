@@ -35,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity {
-    TextView titleTW, descriptionTW;
+    TextView titleTW, descriptionTW, ratingTW;
     WebView webView;
     ImageView thumbnail;
     RecyclerView recyclerView, recyclerView2;
@@ -45,7 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
     private List<Poster> posterList;
     LinearLayoutManager layoutManager, layoutManager2;
 
-    String moviename, moviedescription, movieimage, video_key, releasedate;
+    String moviename, moviedescription, movieimage, video_key, releasedate, movieRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ public class DetailsActivity extends AppCompatActivity {
         descriptionTW = findViewById(R.id.Description);
         thumbnail = findViewById(R.id.Thumbnail);
         webView = findViewById(R.id.webView);
+        ratingTW = findViewById(R.id.MovieRating);
 
         Intent intent = getIntent();
         if(intent.hasExtra("originaltitle")){
@@ -64,8 +65,10 @@ public class DetailsActivity extends AppCompatActivity {
             moviedescription= getIntent().getExtras().getString("shortdescription");
             movieimage = getIntent().getExtras().getString("image");
             releasedate = getIntent().getExtras().getString("releasedate").substring(0,4);
+            movieRating = getIntent().getExtras().getString("vote_average");
             Glide.with(getApplicationContext()).load(movieimage).into(thumbnail);
             titleTW.setText(moviename + " (" + releasedate + ")");
+            ratingTW.setText(movieRating);
             descriptionTW.setText(moviedescription);
         }
         else{
