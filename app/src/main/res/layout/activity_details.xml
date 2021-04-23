@@ -41,12 +41,38 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/MovieRating"
+                    android:id="@+id/UserRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="200dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/Thumbnail"
                     android:layout_below="@+id/TitleAndReleaseDate"
+                    android:text="User Rating"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <RatingBar
+                    android:id="@+id/MovieRating"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="180dp"
+                    android:numStars="10"
+                    android:stepSize="0.1"
+                    android:layout_below="@+id/UserRating"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/Rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/UserRating"
+                    android:layout_toEndOf="@+id/MovieRating"
                     android:textColor="@color/white"
                     android:textSize="20sp"/>
 

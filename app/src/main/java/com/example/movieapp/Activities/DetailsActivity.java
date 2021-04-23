@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
     private List<RelatedMoviesResult> relatedlist;
     private List<Poster> posterList;
     LinearLayoutManager layoutManager, layoutManager2;
+    RatingBar ratingBar;
 
     String moviename, moviedescription, movieimage, video_key, releasedate, movieRating;
 
@@ -57,7 +59,8 @@ public class DetailsActivity extends AppCompatActivity {
         descriptionTW = findViewById(R.id.Description);
         thumbnail = findViewById(R.id.Thumbnail);
         webView = findViewById(R.id.webView);
-        ratingTW = findViewById(R.id.MovieRating);
+        ratingBar = findViewById(R.id.MovieRating);
+        ratingTW = findViewById(R.id.Rating);
 
         Intent intent = getIntent();
         if(intent.hasExtra("originaltitle")){
@@ -68,6 +71,7 @@ public class DetailsActivity extends AppCompatActivity {
             movieRating = getIntent().getExtras().getString("vote_average");
             Glide.with(getApplicationContext()).load(movieimage).into(thumbnail);
             titleTW.setText(moviename + " (" + releasedate + ")");
+            ratingBar.setRating(Float.parseFloat(movieRating));
             ratingTW.setText(movieRating);
             descriptionTW.setText(moviedescription);
         }
