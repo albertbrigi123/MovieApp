@@ -26,15 +26,27 @@
                     android:id="@+id/Thumbnail"
                     android:layout_width="180dp"
                     android:layout_height="250dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/AddToWatchList"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="100dp"
+                    android:src="@drawable/ic_baseline_watchlist_add_24"
+                    android:layout_toEndOf="@id/Thumbnail"
+                    android:background="@color/background"
+                    android:layout_marginTop="30dp"/>
 
                 <TextView
                     android:id="@+id/TitleAndReleaseDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginLeft="40dp"
                     android:layout_toEndOf="@+id/Thumbnail"
+                    android:layout_below="@id/AddToWatchList"
                     android:textStyle="bold"
                     android:textAlignment="viewStart"
                     android:textColor="@color/white"

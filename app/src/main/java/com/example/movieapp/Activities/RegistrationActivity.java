@@ -23,7 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -83,9 +85,11 @@ public class RegistrationActivity extends AppCompatActivity {
                                     userID = fAuth.getCurrentUser().getUid();
                                     DocumentReference documentReference = fStore.collection("users").document(userID);
                                     Map<String, Object> user = new HashMap<>();
+                                    List<Integer> watchListMovieIds = new ArrayList<Integer>();
                                     user.put("firstName", firstName);
                                     user.put("lastName", lastName);
                                     user.put("email", email);
+                                    user.put("watchListMovieIds", watchListMovieIds);
                                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
