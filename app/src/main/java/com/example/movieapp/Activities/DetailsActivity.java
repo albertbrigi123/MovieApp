@@ -40,6 +40,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 
 import java.lang.reflect.Array;
@@ -85,6 +87,7 @@ public class DetailsActivity extends AppCompatActivity {
         ratingTW = findViewById(R.id.Rating);
         addToWatchListBtn = findViewById(R.id.AddToWatchList);
 
+
         Intent intent = getIntent();
         if (intent.hasExtra("originaltitle")) {
             movieId = getIntent().getExtras().getInt("id");
@@ -104,21 +107,38 @@ public class DetailsActivity extends AppCompatActivity {
         getRelatedModies();
         getVideo();
         getImages();
-        addToWatchListBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DocumentReference documentReference = fStore.collection("users").document(userId);
-                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        DocumentReference ref = fStore.collection("users").document(userId);
+
+        Query query = fStore.collection("users").whereArrayContains("watchListMovieIds", movieId);
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                             @Override
+                                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                 if(queryDocumentSnapshots.getDocuments().toString() != "[]")
+                                                 {
+                                                     addToWatchListBtn.setVisibility(View.INVISIBLE);
+                                                 }
+                                             }
+                                         });
+
+                addToWatchListBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        movieIds = (ArrayList<Integer>) task.getResult().get("watchListMovieIds");
-                        movieIds.add(movieId);
-                        documentReference.update("watchListMovieIds", movieIds);
+                    public void onClick(View v) {
+                        DocumentReference documentReference = fStore.collection("users").document(userId);
+                        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                movieIds = (ArrayList<Integer>) task.getResult().get("watchListMovieIds");
+
+                                movieIds.add(movieId);
+                                documentReference.update("watchListMovieIds", movieIds);
+                                addToWatchListBtn.setVisibility(View.INVISIBLE);
+                            }
+                        });
                     }
                 });
-                Log.d("TAG", movieIds.toString());
-            }
-        });
+
+
 
 
     }
