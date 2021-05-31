@@ -24,5 +24,6 @@ public interface GetMovie {
     @GET("movie/{movie_id}/images")
     Call<MovieImages> getMovieImages(@Path("movie_id") int id, @Query("api_key") String apiKey);
 
-
+    @GET("movie/{movie_id}")
+    Call<Result> getMovie(@Path("movie_id") int id, @Query("api_key") String apiKey);
 }
