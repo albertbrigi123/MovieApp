@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.HomeActivity"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    tools:context=".Activities.HomeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,18 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_navigation"/>
+            app:menu="@menu/bottom_navigation" />
 
         <EditText
             android:id="@+id/SearchMovieText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
             android:focusable="true"
             android:hint="@string/SearchMovieText"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,22 +38,22 @@
             android:id="@+id/SearchButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/SearchMovieText"
             android:text="@string/Search"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listmovies"
+            android:id="@+id/MovieList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/SearchButton"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="55dp" />
 
-    </RelativeLayout>/
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

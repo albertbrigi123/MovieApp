@@ -73,10 +73,11 @@ public class Result { //Movie
     public void setVideo(Boolean video) {
         this.video = video;
     }
-    String baseImageUri="http://image.tmdb.org/t/p/w500";
+
+    String baseImageUri = "http://image.tmdb.org/t/p/w500";
 
     public String getPosterPath() {
-        return "http://image.tmdb.org/t/p/w500" + posterPath ;
+        return "http://image.tmdb.org/t/p/w500" + posterPath;
     }
 
 //    public String getPosterPath() {
@@ -167,12 +168,12 @@ public class Result { //Movie
         this.releaseDate = releaseDate;
     }
 
-    public Result(String title, String overview, String posterPath){
-        this.overview=overview;
-        this.title=title;
-        this.posterPath=posterPath;
+    public Result(String title, String overview, String posterPath) {
+        this.overview = overview;
+        this.title = title;
+        this.posterPath = posterPath;
     }
 
-    public Result(){
+    public Result() {
     }
 }

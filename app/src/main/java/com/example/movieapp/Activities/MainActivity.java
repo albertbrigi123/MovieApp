@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.example.movieapp.R;
 
 public class MainActivity extends AppCompatActivity {

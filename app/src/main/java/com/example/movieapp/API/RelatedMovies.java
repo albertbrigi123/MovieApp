@@ -52,7 +52,8 @@ public class RelatedMovies {
         this.totalResults = totalResults;
     }
 
-    public RelatedMovies(){}
+    public RelatedMovies() {
+    }
 
     public RelatedMovies(Integer page, List<RelatedMoviesResult> results, Integer totalPages, Integer totalResults) {
         this.page = page;

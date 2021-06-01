@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.DetailsActivity"
     android:background="@color/background"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    tools:context=".Activities.DetailsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -28,43 +28,43 @@
                     android:id="@+id/Thumbnail"
                     android:layout_width="180dp"
                     android:layout_height="250dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp" />
 
                 <ImageButton
-                    android:id="@+id/AddToWatchList"
+                    android:id="@+id/AddToWatchListBtn"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="100dp"
-                    android:src="@drawable/ic_baseline_watchlist_add_24"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="30dp"
                     android:layout_toEndOf="@id/Thumbnail"
                     android:background="@color/background"
-                    android:layout_marginTop="30dp"/>
+                    android:src="@drawable/ic_baseline_watchlist_add_24" />
 
                 <TextView
                     android:id="@+id/TitleAndReleaseDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/AddToWatchListBtn"
+                    android:layout_marginStart="40dp"
                     android:layout_marginTop="40dp"
-                    android:layout_marginLeft="40dp"
                     android:layout_toEndOf="@+id/Thumbnail"
-                    android:layout_below="@id/AddToWatchList"
-                    android:textStyle="bold"
                     android:textAlignment="viewStart"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/UserRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/Thumbnail"
-                    android:text="User Rating"
-                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/UserRating"
                     android:textAlignment="viewStart"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <RatingBar
                     android:id="@+id/MovieRating"
@@ -76,29 +76,29 @@
                     android:numStars="10"
                     android:stepSize="0.1"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/Rating"
+                    android:id="@+id/RatingScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
                     android:layout_below="@+id/UserRating"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_toEndOf="@+id/MovieRating"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/Overview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/Rating"
+                    android:layout_below="@id/RatingScore"
                     android:layout_marginTop="15dp"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
+                    android:text="@string/Overview"
                     android:textColor="@color/white"
-                    android:text="@string/Overview"/>
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Description"
@@ -111,82 +111,80 @@
                     app:layout_constraintTop_toBottomOf="@+id/TitleAndReleaseDate" />
 
                 <TextView
-                    android:id="@+id/trailers"
+                    android:id="@+id/Trailer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@id/Description"
                     android:layout_marginTop="25dp"
                     android:text="@string/Trailer"
-                    android:layout_below="@id/Description"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/Description" />
 
                 <WebView
-                    android:id="@+id/webView"
+                    android:id="@+id/TrailerWebView"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:layout_below="@id/Trailer"
                     android:layout_marginTop="5dp"
-                    android:text="TextView"
-                    android:layout_below="@id/trailers"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/im"
+                    android:id="@+id/Images"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/TrailerWebView"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/Images"
-                    android:layout_below="@id/webView"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@+id/trailers" />
+                    app:layout_constraintTop_toBottomOf="@+id/Trailer" />
 
                 <LinearLayout
+                    android:id="@+id/ImagesLayout"
                     android:layout_width="wrap_content"
-                    android:id="@+id/lin2"
-                    android:layout_below="@+id/im"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/Images"
                     android:orientation="horizontal">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_view2"
+                        android:id="@+id/ImageList"
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:orientation="horizontal"
-                        app:layout_constraintBottom_toTopOf="@+id/im" />
+                        app:layout_constraintBottom_toTopOf="@+id/Images" />
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/related"
-                    android:layout_below="@+id/lin2"
+                    android:id="@+id/RelatedMovies"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_below="@+id/ImagesLayout"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/ReleatedMovies"
+                    android:text="@string/RelatedMovies"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
                     android:textSize="16sp"
-                    app:layout_constraintTop_toBottomOf="@+id/lin2" />
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/ImagesLayout" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_below="@id/related"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/RelatedMovies"
                     android:orientation="horizontal">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_view1"
+                        android:id="@+id/RelatedMovieList"
                         android:layout_width="wrap_content"
                         android:layout_height="200dp"
                         android:orientation="horizontal"
-                        app:layout_constraintBottom_toTopOf="@+id/trailers" />
+                        app:layout_constraintBottom_toTopOf="@+id/Trailer" />
 
                 </LinearLayout>
 

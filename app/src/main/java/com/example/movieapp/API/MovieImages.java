@@ -46,7 +46,7 @@ public class MovieImages {
         this.posters = posters;
     }
 
-    public MovieImages(){
+    public MovieImages() {
 
     }
 }

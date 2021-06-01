@@ -13,14 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.API.RelatedMoviesResult;
-import com.example.movieapp.API.Result;
 import com.example.movieapp.Activities.DetailsActivity;
 import com.example.movieapp.R;
 
 import java.util.List;
 
-public class RelatedMoviesAdapter extends RecyclerView.Adapter<RelatedMoviesAdapter.MyViewHolder>
-{
+public class RelatedMoviesAdapter extends RecyclerView.Adapter<RelatedMoviesAdapter.MyViewHolder> {
     private final Context context;
     private final List<RelatedMoviesResult> relatedlist;
 
@@ -46,30 +44,29 @@ public class RelatedMoviesAdapter extends RecyclerView.Adapter<RelatedMoviesAdap
         return relatedlist.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
         public TextView title;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            image=itemView.findViewById(R.id.relatedimage);
-            title=itemView.findViewById(R.id.title);
+            image = itemView.findViewById(R.id.RelatedMovieImage);
+            title = itemView.findViewById(R.id.RelatedMovieTitle);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if(pos != RecyclerView.NO_POSITION){
-                        RelatedMoviesResult clickedDataItem = relatedlist.get(pos);
-                        Intent intent = new Intent(context, DetailsActivity.class);
-                        intent.putExtra("id",relatedlist.get(pos).getId());
-                        intent.putExtra("originaltitle", relatedlist.get(pos).getOriginalTitle());
-                        intent.putExtra("shortdescription", relatedlist.get(pos).getOverview());
-                        intent.putExtra("image",relatedlist.get(pos).getPosterPath());
-                        intent.putExtra("releasedate", relatedlist.get(pos).getReleaseDate());
-                        intent.putExtra("vote_average", Double.toString(relatedlist.get(pos).getVoteAverage()));
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }}
+            itemView.setOnClickListener(v -> {
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    RelatedMoviesResult clickedDataItem = relatedlist.get(pos);
+                    Intent intent = new Intent(context, DetailsActivity.class);
+                    intent.putExtra("id", relatedlist.get(pos).getId());
+                    intent.putExtra("originaltitle", relatedlist.get(pos).getOriginalTitle());
+                    intent.putExtra("shortdescription", relatedlist.get(pos).getOverview());
+                    intent.putExtra("image", relatedlist.get(pos).getPosterPath());
+                    intent.putExtra("releasedate", relatedlist.get(pos).getReleaseDate());
+                    intent.putExtra("vote_average", Double.toString(relatedlist.get(pos).getVoteAverage()));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
             });
         }
     }

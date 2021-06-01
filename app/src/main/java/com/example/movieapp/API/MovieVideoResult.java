@@ -41,10 +41,11 @@ public class MovieVideoResult {
         return iso6391;
     }
 
-    public MovieVideoResult(String key, String name){
-        this.key=key;
-        this.name=name;
+    public MovieVideoResult(String key, String name) {
+        this.key = key;
+        this.name = name;
     }
+
     public void setIso6391(String iso6391) {
         this.iso6391 = iso6391;
     }
@@ -97,7 +98,8 @@ public class MovieVideoResult {
         this.type = type;
     }
 
-    public MovieVideoResult(){}
+    public MovieVideoResult() {
+    }
 
     public MovieVideoResult(String id, String iso6391, String iso31661, String key, String name, String site, Integer size, String type) {
         this.id = id;

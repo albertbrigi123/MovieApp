@@ -17,8 +17,9 @@
 
     <string name="Overview">Overview</string>
     <string name="Trailer">Trailer</string>
-    <string name="ReleatedMovies">Releated movies</string>
+    <string name="RelatedMovies">Releated movies</string>
     <string name="Images">Images</string>
+    <string name="UserRating">User Rating</string>
 
     <string name="LogOut">Log out</string>
     <string name="ChangePassword">Change password</string>

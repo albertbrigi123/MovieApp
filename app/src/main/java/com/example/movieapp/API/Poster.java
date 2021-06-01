@@ -38,10 +38,10 @@ public class Poster {
 //        return filePath;
 //    }
 
-    String baseImageUri="http://image.tmdb.org/t/p/w500";
+    String baseImageUri = "http://image.tmdb.org/t/p/w500";
 
     public String getFilePath() {
-        return "http://image.tmdb.org/t/p/w500" + filePath ;
+        return "http://image.tmdb.org/t/p/w500" + filePath;
     }
 
     public void setFilePath(String filePath) {

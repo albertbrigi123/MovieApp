@@ -17,11 +17,11 @@ import java.util.List;
 
 public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.MyViewHolder> {
     private final Context context;
-    private final List<Poster> imageslist;
+    private final List<Poster> imageList;
 
-    public ImagesAdapter(Context context, List<Poster> imageslist) {
+    public ImagesAdapter(Context context, List<Poster> imageList) {
         this.context = context;
-        this.imageslist = imageslist;
+        this.imageList = imageList;
     }
 
     @NonNull
@@ -33,20 +33,20 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(context).load(imageslist.get(position).getFilePath()).into(holder.image);
+        Glide.with(context).load(imageList.get(position).getFilePath()).into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        return imageslist.size();
+        return imageList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.oneimage);
+            image = itemView.findViewById(R.id.Image);
         }
     }
 }

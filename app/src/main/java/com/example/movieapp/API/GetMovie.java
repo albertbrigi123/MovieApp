@@ -1,7 +1,5 @@
 package com.example.movieapp.API;
 
-import com.example.movieapp.API.Example;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

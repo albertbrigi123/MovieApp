@@ -17,15 +17,14 @@ import com.example.movieapp.Activities.DetailsActivity;
 import com.example.movieapp.R;
 
 import java.util.List;
-import java.util.concurrent.atomic.DoubleAccumulator;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
     List<Result> movielist;
     Context context;
 
-    public MovieListAdapter(List<Result> s, Context context) {
-        this.movielist = s;
-        this.context=context;
+    public MovieListAdapter(List<Result> movielist, Context context) {
+        this.movielist = movielist;
+        this.context = context;
     }
 
     @NonNull
@@ -59,13 +58,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
-                    if(pos != RecyclerView.NO_POSITION){
-                        Result clickedDataItem = movielist.get(pos);
+                    if (pos != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(context, DetailsActivity.class);
-                        intent.putExtra("id",movielist.get(pos).getId());
+                        intent.putExtra("id", movielist.get(pos).getId());
                         intent.putExtra("originaltitle", movielist.get(pos).getOriginalTitle());
                         intent.putExtra("shortdescription", movielist.get(pos).getOverview());
-                        intent.putExtra("image",movielist.get(pos).getPosterPath());
+                        intent.putExtra("image", movielist.get(pos).getPosterPath());
                         intent.putExtra("releasedate", movielist.get(pos).getReleaseDate());
                         intent.putExtra("vote_average", Double.toString(movielist.get(pos).getVoteAverage()));
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -75,31 +73,32 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
             });
         }
     }
-    public void add(Result movie){
+
+    public void add(Result movie) {
         movielist.add(movie);
-        notifyItemInserted(movielist.size()-1);
+        notifyItemInserted(movielist.size() - 1);
     }
 
-    public void addAll(List<Result> movies){
-        for(Result m: movies){
+    public void addAll(List<Result> movies) {
+        for (Result m : movies) {
             add(m);
         }
     }
 
-    public void addBottemIttem(){
+    public void addBottomItem() {
         add(new Result());
     }
 
-    public void removedLastEmptyItem(){
-        int position = movielist.size()-1;
-        Result item =  getItem(position);
-        if(item != null){
+    public void removedLastEmptyItem() {
+        int position = movielist.size() - 1;
+        Result item = getItem(position);
+        if (item != null) {
             movielist.remove(position);
             notifyItemRemoved(position);
         }
     }
 
-    private Result getItem(int position){
+    private Result getItem(int position) {
         return movielist.get(position);
     }
 

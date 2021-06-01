@@ -150,10 +150,10 @@ public class RelatedMoviesResult {
 //        return posterPath;
 //    }
 
-    String baseImageUri="http://image.tmdb.org/t/p/w500";
+    String baseImageUri = "http://image.tmdb.org/t/p/w500";
 
     public String getPosterPath() {
-        return "http://image.tmdb.org/t/p/w500" + posterPath ;
+        return "http://image.tmdb.org/t/p/w500" + posterPath;
     }
 
 
@@ -169,7 +169,7 @@ public class RelatedMoviesResult {
         this.popularity = popularity;
     }
 
-    public RelatedMoviesResult(){
+    public RelatedMoviesResult() {
 
     }
 
