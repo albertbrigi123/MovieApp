@@ -132,6 +132,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                                 movieIds.add(movieId);
                                 documentReference.update("watchListMovieIds", movieIds);
+                                Toast.makeText(DetailsActivity.this, "The movie added to your watchlist!", Toast.LENGTH_SHORT);
                                 addToWatchListBtn.setVisibility(View.INVISIBLE);
                             }
                         });
