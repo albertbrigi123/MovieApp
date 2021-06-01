@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:background="@color/background"
-tools:context=".Activities.LoginActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".Activities.LoginActivity">
 
     <ImageView
         android:id="@+id/Logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/LoginText"
-        android:layout_below="@+id/Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/Logo"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
         android:text="@string/Login"
         android:textColor="@color/white"
         android:textSize="25sp" />
@@ -34,77 +34,77 @@ tools:context=".Activities.LoginActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/LoginText"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
-        android:textColorHint="@color/white"
         android:hint="@string/Email"
+        android:inputType="textEmailAddress"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/PasswordText"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/EmailText"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp"
         android:hint="@string/Password"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
         android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="16sp" />
 
     <Button
         android:id="@+id/LoginButton"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rememberMeCheckBox"
+        android:layout_below="@id/RememberMeCheckBox"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
-        android:text="LOG IN"
+        android:layout_marginRight="50dp"
+        android:text="@string/LogIn"
         android:textColor="@color/white"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/SignUpButton"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/LoginButton"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/SignUp"
         android:textColor="@color/white"
-        android:text="SIGN UP"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <CheckBox
-        android:id="@+id/rememberMeCheckBox"
+        android:id="@+id/RememberMeCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="15dp"
         android:layout_below="@+id/PasswordText"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/RememberMe"
         android:textColor="@color/white"
-        android:text="Remember me"
-        android:textSize="15dp"
-        />
+        android:textSize="15sp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:layout_centerInParent="true"
-        android:elevation="8dp">
+        android:elevation="8dp"
+        android:padding="20dp">
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true" />
 
     </RelativeLayout>
 
