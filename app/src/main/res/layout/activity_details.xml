@@ -119,18 +119,17 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/Description" />
+
                 <WebView
                     android:id="@+id/webView"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="140dp"
                     android:layout_marginTop="5dp"
                     android:text="TextView"
                     android:layout_below="@id/trailers"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    >
-
-                </WebView>
+                    />
 
                 <TextView
                     android:id="@+id/im"
