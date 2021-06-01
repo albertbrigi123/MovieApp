@@ -20,6 +20,7 @@
             tools:ignore="MissingConstraints" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/background"
             android:id="@+id/listmovies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

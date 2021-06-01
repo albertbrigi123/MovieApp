@@ -32,7 +32,7 @@ public class WatchListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Result> watchList;
     LinearLayoutManager layoutManager;
-    MovieListAdapter favoriteListAdapter;
+    FavoriteListAdapter favoriteListAdapter;
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
     String userId;
@@ -51,16 +51,13 @@ public class WatchListActivity extends AppCompatActivity {
         userId = fAuth.getCurrentUser().getUid();
         recyclerView = findViewById(R.id.listmovies);
         watchList = new ArrayList<>();
-        favoriteListAdapter = new MovieListAdapter(watchList, this);
+        favoriteListAdapter = new FavoriteListAdapter(watchList, this);
 
         layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(favoriteListAdapter);
-        favoriteListAdapter.notifyDataSetChanged();
-
-
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.get().addOnCompleteListener(task -> {
@@ -74,16 +71,18 @@ public class WatchListActivity extends AppCompatActivity {
                         Result movie = response.body();
                         System.out.println(movie.getOriginalTitle());
                         watchList.add(movie);
-
+                        favoriteListAdapter.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onFailure(Call<Result> call, Throwable t) {
                         Toast.makeText(WatchListActivity.this, "Error Fetching data", Toast.LENGTH_SHORT).show();
                     }
+
+
                 });
             }
-            recyclerView.setAdapter(new FavoriteListAdapter(watchList, WatchListActivity.this));
+
         });
 
 
